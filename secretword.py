@@ -9,6 +9,14 @@ secretword = ""
 with open("words.txt") as f:
     secretword = random.choice(f.readlines()).strip()
 
+class Game:
+    round_count = 0 
+    
+    def __init__(self) -> None:
+        pass
+
+    def execute():
+        pass
 
 #----------------- main func ----------------------
 def print_usage():
@@ -29,3 +37,9 @@ if __name__ == '__main__':
         sys.exit(1)
     print("You have chosen to play on difficulty level " + sys.argv[2])
     user_guess = input("Guess the secret word: ")
+
+
+    
+    
+
+
