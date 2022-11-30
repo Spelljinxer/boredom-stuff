@@ -27,16 +27,23 @@ class Game:
         elif(self.difficulty) == 5:
             self.guess_count = 5
         
-    def check_win(self, guess):
-        return(guess == secretword)
- 
     def execute(self):
         while(self.round_count < self.guess_count):
             print("You have " + str(self.guess_count - self.round_count) + " guesses left.")
             guess = input("Enter your guess: ")
-            if(self.check_win(guess)):
+            if(guess == secretword):
                 print("You won in " + str(self.round_count) + " guesses!")
                 break
+            
+            #check position of letters in guess
+            table = prettytable.PrettyTable(["Letter", "Position"])
+            for i in range(0, len(guess)):
+                if(guess[i] == secretword[i]):
+                    table.add_row([guess[i], "Correct"])
+                else:
+                    table.add_row([guess[i], "Wrong"])
+            print(table)
+
             self.round_count += 1
         
         print("You lost! The word was " + secretword + ".")
