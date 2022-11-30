@@ -51,7 +51,8 @@ class Game:
                     self.output_word = self.output_word[:i] + guess[i] + self.output_word[i+1:]
                 elif(guess[i] in secretword):
                     self.output_word = self.output_word[:i] + "*" + self.output_word[i+1:]
- 
+
+            print("Output : ", self.output_word)
             self.round_count += 1
         
         print("You lost! The word was " + secretword + ".")
@@ -77,7 +78,7 @@ if __name__ == '__main__':
     print("You have chosen to play on difficulty level " + sys.argv[2])
     
     Game = Game(sys.argv[2])
-    print("SECRET WORD IS: " + secretword)
+    # print("SECRET WORD IS: " + secretword)
     Game.execute()
 
 
