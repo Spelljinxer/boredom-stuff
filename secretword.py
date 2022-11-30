@@ -14,6 +14,8 @@ class Game:
     round_count = 0 
     difficulty = 0
 
+    output_word = ""
+
     def __init__(self, difficulty):
         self.difficulty = int(difficulty)
         if(self.difficulty) == 1:
@@ -26,29 +28,29 @@ class Game:
             self.guess_count = 10
         elif(self.difficulty) == 5:
             self.guess_count = 5
+        
+        for i in range(len(secretword)):
+            self.output_word += "_"
     
     def execute(self):
         while(self.round_count < self.guess_count):
             if(self.difficulty == 1 or self.difficulty == 2):
                 print("Length of the word is: " + str(len(secretword)))
-            print("You have " + str(self.guess_count - self.round_count) + " guesses left.")
+            # print("You have " + str(self.guess_count - self.round_count) + " guesses left.")
             guess = input("Enter your guess: ")
-            if(guess == secretword):
-                print("You won in " + str(self.round_count) + " guesses!")
-                break
-            
-            table = prettytable.PrettyTable(["Guess", "In Word", "Correct Position"])
-            for i in range(len(guess)):
-                if(guess[i] in secretword):
-                    if(guess[i] == secretword[i]):
-                        table.add_row([guess[i], True, True])
-                    else:
-                        table.add_row([guess[i], True, False])
-                else:
-                    table.add_row([guess[i], False, False])
-            print(table)
-            
+            #ask for another input if the guess is longer or shorter than the secret word
+            if(len(guess) != len(secretword)):
+                print("Your guess is not the same length as the secret word.")
+                continue
+               
 
+            #place a '*' in the output_word where the guess is correct but in the wrong position,
+            #and the letter of the guess where the guess is correct and in the correct position
+            for i in range(len(secretword)):
+                if(guess[i] == secretword[i]):
+                    self.output_word = self.output_word[:i] + guess[i] + self.output_word[i+1:]
+                elif(guess[i] in secretword):
+                    self.output_word = self.output_word[:i] + "*" + self.output_word[i+1:]
  
             self.round_count += 1
         
