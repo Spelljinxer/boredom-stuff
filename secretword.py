@@ -26,24 +26,30 @@ class Game:
             self.guess_count = 10
         elif(self.difficulty) == 5:
             self.guess_count = 5
-        
+    
     def execute(self):
         while(self.round_count < self.guess_count):
+            if(self.difficulty == 1 or self.difficulty == 2):
+                print("Length of the word is: " + str(len(secretword)))
             print("You have " + str(self.guess_count - self.round_count) + " guesses left.")
             guess = input("Enter your guess: ")
             if(guess == secretword):
                 print("You won in " + str(self.round_count) + " guesses!")
                 break
             
-            #check position of letters in guess
-            table = prettytable.PrettyTable(["Letter", "Position"])
-            for i in range(0, len(guess)):
-                if(guess[i] == secretword[i]):
-                    table.add_row([guess[i], "Correct"])
+            table = prettytable.PrettyTable(["Guess", "In Word", "Correct Position"])
+            for i in range(len(guess)):
+                if(guess[i] in secretword):
+                    if(guess[i] == secretword[i]):
+                        table.add_row([guess[i], True, True])
+                    else:
+                        table.add_row([guess[i], True, False])
                 else:
-                    table.add_row([guess[i], "Wrong"])
+                    table.add_row([guess[i], False, False])
             print(table)
+            
 
+ 
             self.round_count += 1
         
         print("You lost! The word was " + secretword + ".")
@@ -69,6 +75,7 @@ if __name__ == '__main__':
     print("You have chosen to play on difficulty level " + sys.argv[2])
     
     Game = Game(sys.argv[2])
+    print("SECRET WORD IS: " + secretword)
     Game.execute()
 
 
