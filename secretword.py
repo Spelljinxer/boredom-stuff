@@ -33,9 +33,9 @@ class Game:
             self.output_word += "_"
     
     def execute(self):
-        while(self.round_count < self.guess_count):
-            if(self.difficulty == 1 or self.difficulty == 2):
+        if(self.difficulty == 1 or self.difficulty == 2):
                 print("Length of the word is: " + str(len(secretword)))
+        while(self.round_count < self.guess_count):
             # print("You have " + str(self.guess_count - self.round_count) + " guesses left.")
             guess = input("Enter your guess: ")
             #ask for another input if the guess is longer or shorter than the secret word
