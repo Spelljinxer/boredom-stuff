@@ -42,10 +42,7 @@ class Game:
             if(len(guess) != len(secretword)):
                 print("Your guess is not the same length as the secret word.")
                 continue
-               
-
-            #place a '*' in the output_word where the guess is correct but in the wrong position,
-            #and the letter of the guess where the guess is correct and in the correct position
+                
             for i in range(len(secretword)):
                 if(guess[i] == secretword[i]):
                     self.output_word = self.output_word[:i] + guess[i] + self.output_word[i+1:]
