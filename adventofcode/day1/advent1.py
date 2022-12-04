@@ -1,5 +1,3 @@
-#store the contents of list.txt into an array of arrays,
-# where each array contains each line until a blank line is reached.
 
 elves = []
 with open("./adventofcode/day1/list.txt") as f:
