@@ -2,8 +2,7 @@
 # where each array contains each line until a blank line is reached.
 
 elves = []
-with open("list.txt") as f:
-    #create a new array for each blank line
+with open("./adventofcode/day1/list.txt") as f:
     elves.append([])
     for line in f:
         if line.strip() == "":
@@ -11,14 +10,11 @@ with open("list.txt") as f:
         else:
             elves[-1].append(int(line.strip()))
 elf_carrying_most = 0
+print(elves)
 for elf in elves:
     total_calories = 0
     for ingredient in elf:
         total_calories += ingredient
-    max_calories = 0
-    #find the index of the elf with the most calories
-    if total_calories > max_calories:
-        max_calories = total_calories
-        elf_carrying_most = elf
+    if total_calories > elf_carrying_most:
+        elf_carrying_most = total_calories
 print(elf_carrying_most)
-print(max_calories)
